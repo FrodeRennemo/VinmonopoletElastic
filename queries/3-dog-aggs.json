@@ -1,0 +1,92 @@
+
+GET /hund/_search
+{
+  "size": 0,
+  "aggs": {
+    "types": {
+      "terms": {
+        "field": "_type",
+        "size": 10
+      }
+    }
+  }
+}
+
+
+
+GET /hund/_search
+{
+  "size": 0,
+  "aggs": {
+    "types": {
+      "terms": {
+        "field": "navn",
+        "size": 10
+      }
+    }
+  }
+}
+
+
+GET /hund/_search
+{
+  "size": 0,
+  "aggs": {
+    "types": {
+      "terms": {
+        "field": "navn.keyword",
+        "size": 10
+      }
+    }
+  }
+}
+
+
+
+GET /hund/_search
+{
+  "size": 0,
+  "aggs": {
+    "alder_hist":{
+      "histogram": {
+        "field": "alder",
+        "interval": 2
+      }
+    }
+  }
+}
+
+
+GET /hund/_search
+{
+  "size": 0,
+  "aggs": {
+    "alder_avg": {
+      "avg": {
+        "field": "alder"
+      }
+    }
+  }
+}
+
+
+
+GET /hund/_search
+{
+  "size": 0,
+  "aggs": {
+    "types": {
+      "terms": {
+        "field": "_type",
+        "size": 10
+      },
+      "aggs": {
+        "alder_avg": {
+          "avg": {
+            "field": "alder"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+
+//https://www.elastic.co/guide/en/elasticsearch/reference/5.2/search-request-search-type.html#dfs-query-then-fetch
+
+
+
+
+GET /hund/_search
+{
+  "query": {
+    "match": {
+      "navn": "fido"
+    }
+  }
+}
+
+GET /hund/_search
+{
+  "explain": true,
+  "query": {
+    "match": {
+      "navn": "fido"
+    }
+  }
+}
+
+
+
+GET /hund/_search?search_type=dfs_query_then_fetch
+{
+  "explain": true,
+  "query": {
+    "match": {
+      "navn": "fido"
+    }
+  }
+}

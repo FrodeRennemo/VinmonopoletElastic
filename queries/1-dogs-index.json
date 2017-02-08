@@ -1,0 +1,23 @@
+
+
+POST /hund/puddel/
+{ "navn": "fido", "alder": 2}
+
+GET /hund/_search
+POST /hund/schafer/2
+{ "navn": "bob", "alder": 5}
+
+POST /hund/rottweiler
+{ "navn": "john", "alder": 4}
+
+POST /hund/puddel
+{ "navn": "dolly", "alder": 12}
+
+POST /hund/samojed
+{ "navn": "lucas", "alder": 4}
+
+POST /hund/rottweiler
+{ "navn": "fido", "alder": 2}
+
+POST /hund/chiwawa
+{ "navn": "fido", "alder": 8}

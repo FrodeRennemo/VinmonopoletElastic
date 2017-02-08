@@ -1,0 +1,19 @@
+
+DELETE /hund
+
+PUT /hund
+{
+  "settings" : {
+        "index" : {
+            "number_of_shards" : 1,
+            "number_of_replicas" : 0 
+        }
+    }
+}
+
+
+GET /_cat/indices
+GET /_cat
+
+GET /_cluster/health
+GET /_cluster/stats
