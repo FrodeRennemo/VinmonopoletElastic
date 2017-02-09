@@ -1,4 +1,6 @@
 
+GET /hund/_mapping
+
 DELETE /hund
 
 PUT /hund
