@@ -69,7 +69,7 @@ def main():
                 row['Sodme'] = int(row['Sodme'])
             if(row['Varenummer']):
                 row['Varenummer'] = int(row['Varenummer'])
-
+            print row['Varenavn']
             es.index(index=es_index,
                      doc_type=doctype,
                      id=row['Varenummer'],
