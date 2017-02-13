@@ -1,3 +1,7 @@
+# VinmonopoletElastic
+
+Index product data from Vinmonopolet to Elasticsearch
+
 
 # Elasticsearch/Kibana Vinmonopolet demo
 This project contains scripts and tools for Vinmonopolet demo.
