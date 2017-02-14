@@ -1,7 +1,7 @@
 
 
 POST /hund/puddel/
-{ "navn": "fido", "alder": 2}
+{ "navn": "fido", "alder"}
 
 GET /hund/_search
 POST /hund/schafer/2
@@ -19,5 +19,5 @@ POST /hund/samojed
 POST /hund/rottweiler
 { "navn": "fido", "alder": 2}
 
-POST /hund/chiwawa
-{ "navn": "fido", "alder": 8}
+POST /hund/papillion
+{ "navn": "bianca", "alder": 6, "beskrivelse": "Lysebrun og hvit."}
