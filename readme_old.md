@@ -38,7 +38,7 @@ in the checked out folder run
 
     pip install
     python script.py
-
+    
 
 you should see product names flying across the screen
 
