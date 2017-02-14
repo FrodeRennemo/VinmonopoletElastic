@@ -1,47 +1,29 @@
 # VinmonopoletElastic
-
 Index product data from Vinmonopolet to Elasticsearch
-
 
 # Elasticsearch/Kibana Vinmonopolet demo
 This project contains scripts and tools for Vinmonopolet demo.
 
-## Installation 
+## Prerequisites
+#### Java 8 installed
+1. Download jdk from http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+2. Set JAVA_HOME environment variable and point to the installation path of the jdk for all users
 
-There are two ways to run this.
+#### Download latest version of Elasticsearch and Kibana
+1. Elasticsearch https://www.elastic.co/downloads/elasticsearch
+2. Kibana https://www.elastic.co/downloads/kibana
 
-1. Install java, elasticsearch, kibanaand python on your local machine
-2. Use vagrant (and virtualbox) to install a virtual machine with all requirements
+#### Run Elasticsearch and Kibana
+1. /elasticsearch-5.2.0/bin/elasticsearch
+2. /kibana-5.2.0/bin/kibana
 
-We recommend 2. since there may be problems with 1, depending on your environment.
+Go to localhost:9200 and localhost:5601 in your browser to ensure you get a response.
 
-### Install locally
-Download Java and install from
+## Index data from Vinmonopolet
+#### Windows 
+For Windows users, simply run import.ps1 (right click, Run with Powershell)
 
-Elasticsearch
+#### UNIX(OSX, Linux)
+Assuming you have Python 2 installed and available in your shell, run python script.py in the terminal
 
-Kibana
-
-Python  [Miniconda python dist https://repo.continuum.io/miniconda/Miniconda2-latest-Windows-x86_64.exe](https://repo.continuum.io/miniconda/Miniconda2-latest-Windows-x86_64.exe)
-
-optional Pycharm, Jetbrains free python IDE [https://www.jetbrains.com/pycharm/(https://www.jetbrains.com/pycharm/)]
-
-Start up Elasticsearch, Kibana
-
-Go to [http://localhost:9200](http://localhost:9200) to see that elasticsearch is running
-
-[http://localhost:5601](http://localhost:5601)   Kibana
-
-
-#### python installation
-in the checked out folder run
-
-    pip install
-    python script.py
-
-
-you should see product names flying across the screen
-
-pip install
-python script.py
 
