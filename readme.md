@@ -24,7 +24,6 @@ Go to localhost:9200 and localhost:5601 in your browser to ensure you get a resp
 For Windows users, simply run import.ps1 (right click, Run with Powershell)
 
 #### UNIX(OSX, Linux)
-Assuming you have Python 2 installed and available in your shell, run the following in the terminal 
-    python script.py 
+Assuming you have Python 2 installed and available in your shell, run `python script.py` in the terminal
 
 
