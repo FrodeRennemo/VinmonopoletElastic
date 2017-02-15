@@ -1,5 +1,5 @@
 
-GET /hund/_search
+GET /beer/_search
 {
   "size": 0,
   "aggs": {
@@ -14,13 +14,28 @@ GET /hund/_search
 
 
 
-GET /hund/_search
+GET /beer/_search
 {
   "size": 0,
   "aggs": {
     "types": {
       "terms": {
-        "field": "navn",
+        "field": "name",
+        "size": 10
+      }
+    }
+  }
+}
+
+GET /beer/_mapping
+
+GET /beer/_search
+{
+  "size": 0,
+  "aggs": {
+    "types": {
+      "terms": {
+        "field": "name.keyword",
         "size": 10
       }
     }
@@ -28,28 +43,14 @@ GET /hund/_search
 }
 
 
-GET /hund/_search
-{
-  "size": 0,
-  "aggs": {
-    "types": {
-      "terms": {
-        "field": "navn.keyword",
-        "size": 10
-      }
-    }
-  }
-}
 
-
-
-GET /hund/_search
+GET /beer/_search
 {
   "size": 0,
   "aggs": {
     "alder_hist":{
       "histogram": {
-        "field": "alder",
+        "field": "alcohol",
         "interval": 2
       }
     }
@@ -57,13 +58,13 @@ GET /hund/_search
 }
 
 
-GET /hund/_search
+GET /beer/_search
 {
   "size": 0,
   "aggs": {
-    "alder_avg": {
+    "alc_avg": {
       "avg": {
-        "field": "alder"
+        "field": "alcohol"
       }
     }
   }
@@ -71,7 +72,7 @@ GET /hund/_search
 
 
 
-GET /hund/_search
+GET /beer/_search
 {
   "size": 0,
   "aggs": {
@@ -81,9 +82,9 @@ GET /hund/_search
         "size": 10
       },
       "aggs": {
-        "alder_avg": {
+        "alc_avg": {
           "avg": {
-            "field": "alder"
+            "field": "alcohol"
           }
         }
       }
