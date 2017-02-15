@@ -3,8 +3,10 @@ function downloadfile() {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     mkdir download -force
     iwr -outfile "download/products.csv" "https://www.vinmonopolet.no/medias/sys_master/products/products/hbc/hb0/8834253127710/produkter.csv"
-    gc download/products.csv  | set-content -encoding UTF8  download/iconproducts.csv
 
+}
+function convertToUTF8() {
+    gc download/products.csv  | set-content -encoding UTF8  download/iconproducts.csv
 }
 
 filter isNumeric ($input) {
@@ -14,7 +16,9 @@ filter isNumeric ($input) {
 }
 
 function importdata() {
-
+    $data = @()
+    $indexOpR = @{ "index"= @{"_type"="produkt"}}
+    $indexOp = ConvertTo-Json $indexOpR -compress
     Write-Host "started processing at $(Get-Date)"
     $tpl = gc "mapping_fielddata.json"
     $res = Invoke-WebRequest -Method PUT -Uri "http://localhost:9200/_template/vinmonopolettpl" -Body $tpl 
@@ -37,17 +41,26 @@ function importdata() {
         }
       }
     
-    $body = ConvertTo-Json $line
-    $postData = [System.Text.Encoding]::UTF8.GetBytes($body)
-    #$resp =   Invoke-WebRequest -Method POST -Uri "http://localhost:9200/vinmonopolet/produkt/$($line.Varenummer)" -Body $postData 
-    $resp =   Invoke-WebRequest -Method POST -Uri "http://localhost:9200/vinmonopolet/produkt" -Body $postData 
-    if($resp.StatusCode -ne  201){
-        Write-Host $resp
-        Write-host $body
-    }
+    $body = ConvertTo-Json $line -Compress
+
+    $data += $indexOp
+    
+    $data += $body 
+    #$resp =   Invoke-WebRequest -Method POST -Uri "http://localhost:9200/vinmonopolet2/produkt" -Body $postData 
+    if($data.length -eq 200){
+        $pddata = $data -join "`r`n" | Out-String
+        $postData = [System.Text.Encoding]::UTF8.GetBytes($pddata)
+        $resp =   Invoke-WebRequest -Method POST -Uri "http://localhost:9200/vinmonopolet2/_bulk" -Body $postData     
+        $data = @()
+        if($resp.StatusCode -ne  201 -and $resp.StatusCode -ne  200 ){ 
+            Write-Host $resp
+            Write-host $body
+            }
+     }
     
     }
     Write-Host "finished processing at $(Get-Date)"
 }
-downloadfile
+#downloadfile
+convertToUTF8
 importdata
