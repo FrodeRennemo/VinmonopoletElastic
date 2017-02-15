@@ -31,7 +31,7 @@ def main():
         es.indices.delete(es_index)
     es.indices.create(es_index)
     dirfile = os.path.dirname(os.path.realpath(__file__))
-    json_mapping = json.loads(open(dirfile + "/mapping_fielddata.json", "r").read())
+    json_mapping = json.loads(open(dirfile + "/mapping.json", "r").read())
     es.indices.put_template(name="vinmonopolettemplate", body=json_mapping)
     url = 'https://www.vinmonopolet.no/medias/sys_master/products/products/hbc/hb0/8834253127710/produkter.csv'
     try:
