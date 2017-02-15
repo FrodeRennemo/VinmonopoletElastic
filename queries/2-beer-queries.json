@@ -4,33 +4,33 @@
 
 
 
-GET /hund/_search
+GET /beer/_search
 {
   "query": {
     "match": {
-      "navn": "fido"
+      "name": "trondheim"
     }
   }
 }
 
-GET /hund/_search
-{
-  "explain": true,
-  "query": {
-    "match": {
-      "navn": "fido"
-    }
-  }
-}
-
-
-
-GET /hund/_search?search_type=dfs_query_then_fetch
+GET /beer/_search
 {
   "explain": true,
   "query": {
     "match": {
-      "navn": "fido"
+      "name": "trondheim"
     }
   }
 }
+
+
+GET /beer/_search?search_type=dfs_query_then_fetch
+{
+  "explain": true,
+  "query": {
+    "match": {
+      "name": "trondheim"
+    }
+  }
+}
+

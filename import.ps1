@@ -2,7 +2,7 @@
 function downloadfile() {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     mkdir download -force
-    #iwr -outfile "download/products.csv" "https://www.vinmonopolet.no/medias/sys_master/products/products/hbc/hb0/8834253127710/produkter.csv"
+    iwr -outfile "download/products.csv" "https://www.vinmonopolet.no/medias/sys_master/products/products/hbc/hb0/8834253127710/produkter.csv"
     gc download/products.csv  | set-content -encoding UTF8  download/iconproducts.csv
 
 }
@@ -39,8 +39,8 @@ function importdata() {
     
     $body = ConvertTo-Json $line
     $postData = [System.Text.Encoding]::UTF8.GetBytes($body)
-    #$resp =   Invoke-WebRequest -Method POST -Uri "http://localhost:9200/vinmonopolet2/produkt/$($line.Varenummer)" -Body $postData 
-    $resp =   Invoke-WebRequest -Method POST -Uri "http://localhost:9200/vinmonopolet3/produkt" -Body $postData 
+    #$resp =   Invoke-WebRequest -Method POST -Uri "http://localhost:9200/vinmonopolet/produkt/$($line.Varenummer)" -Body $postData 
+    $resp =   Invoke-WebRequest -Method POST -Uri "http://localhost:9200/vinmonopolet/produkt" -Body $postData 
     if($resp.StatusCode -ne  201){
         Write-Host $resp
         Write-host $body

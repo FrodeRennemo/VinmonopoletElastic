@@ -1,9 +1,9 @@
 
-GET /hund/_mapping
+GET /beer/_mapping
 
-DELETE /hund
+DELETE /beer
 
-PUT /hund
+PUT /beer
 {
   "settings" : {
         "index" : {

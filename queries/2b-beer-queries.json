@@ -1,0 +1,40 @@
+
+DELETE /beer
+
+PUT /beer
+{
+  "settings" : {
+        "index" : {
+            "number_of_shards" : 1,
+            "number_of_replicas" : 0 
+        }
+    }
+}
+
+
+POST /beer/_bulk
+{"index": {"_type":"pils"}}
+{ "name": "Ringnes", "alcohol": 4}
+{"index": {"_type":"stout"}}
+{ "name": "stout stout stout stout", "alcohol": 2}
+{"index": {"_type":"stout"}}
+{ "name": "imperial stout", "alcohol": 6}
+{"index": {"_type":"pils"}}
+{ "name": "Trondheim Pilsener", "alcohol": 5}
+{"index": {"_type":"stout"}}
+{ "name": "Trondheim Dry Stout", "alcohol": 5}
+{"index": {"_type":"ipa"}}
+{ "name": "Trondheim IPA", "alcohol": 4}
+{"index": {"_type":"stout"}}
+{ "name": "Hornbeer Russian Imperial Stout", "alcohol": 12}
+
+
+
+GET /beer/_search
+{
+  "query": {
+    "match": {
+      "name": "trondheim"
+    }
+  }
+}
