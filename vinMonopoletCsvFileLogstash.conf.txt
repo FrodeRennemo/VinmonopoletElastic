@@ -1,0 +1,59 @@
+input {
+    file {
+        path => "c:/projects/vinmonopoletelastic/download/produkter.csv"
+        start_position => "beginning"
+        codec => plain {
+            charset=> "ISO-8859-1"
+            }
+        }
+}
+
+filter {
+    csv {
+
+        columns => ["Datotid","Varenummer","Varenavn","Volum","Pris","Literpris","Varetype","Produktutvalg","Butikkategori","Fylde","Friskhet","Garvestoffer","Bitterhet","Sodme","Farge","Lukt","Smak","Passertil01","Passertil02","Passertil03","Land","Distrikt","Underdistrikt","Argang","Rastoff","Metode","Alkohol","Sukker","Syre","Lagringsgrad","Produsent","Grossist","Distributor","Emballasjetype","Korktype","Vareurl"]
+        separator => ";"
+        quote_char => "¤"
+        }
+
+if ([Varenummer] =="Varenummer")
+{drop{}}
+mutate {
+    #replace Ukjent 
+    gsub => [
+        "Volum","Ukjent","",
+        "Alkohol","Ukjent","",
+        "Sukker","Ukjent","",
+        "Syre","Ukjent","",
+        "Pris","Ukjent","",
+        "Literpris","Ukjent",""
+    ]
+}
+
+mutate {
+    #replace Norwegian style decimal separator (,) with something else (.)
+    gsub => [
+        "Volum",",",".",
+        "Alkohol",",",".",
+        "Sukker",",",".",
+        "Syre",",",".",
+        "Pris",",",".",
+        "Literpris",",","."
+    ]
+    convert =>  { "Volum,Alkohol,Sukker,Syre,Pris,Literpris" => "float"}
+    remove_field => ["Datotid", "message"]
+}
+
+}
+output {
+ #   stdout{   codec => rubydebug     }
+    elasticsearch {
+        
+       index => vinmonopolet
+      document_type => produkt
+        template => "mapping_fielddata.json"
+        template_name => "vinmonopolet_tpl"
+        template_overwrite => true
+   }
+    
+}
