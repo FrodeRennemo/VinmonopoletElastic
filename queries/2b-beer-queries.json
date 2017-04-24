@@ -20,11 +20,11 @@ POST /beer/_bulk
 {"index": {"_type":"stout"}}
 { "name": "imperial stout", "alcohol": 6}
 {"index": {"_type":"pils"}}
-{ "name": "Trondheim Pilsener", "alcohol": 5}
+{ "name": "Oslo Pilsener", "alcohol": 5}
 {"index": {"_type":"stout"}}
-{ "name": "Trondheim Dry Stout", "alcohol": 5}
+{ "name": "Oslo Dry Stout", "alcohol": 5}
 {"index": {"_type":"ipa"}}
-{ "name": "Trondheim IPA", "alcohol": 4}
+{ "name": "Oslo IPA", "alcohol": 4}
 {"index": {"_type":"stout"}}
 { "name": "Hornbeer Russian Imperial Stout", "alcohol": 12}
 
@@ -34,7 +34,50 @@ GET /beer/_search
 {
   "query": {
     "match": {
-      "name": "trondheim"
+      "name": "Oslo"
     }
   }
 }
+
+
+GET /beer/_search
+{
+  "query": {
+    "range": {
+      "alcohol": {
+        "gte": 4,
+        "lte": 6
+      }
+    }
+  }
+}
+
+ 
+
+
+
+GET beer/_search
+{
+  "query": {
+    "bool": {
+      "must_not": [
+        {
+          "match": {
+            "name": "Oslo"
+          }
+        }
+      ],
+      "must": [
+        {
+          "range": {
+            "Syre": {
+              "gte": 1,
+              "lte": 3
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+

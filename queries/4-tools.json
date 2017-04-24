@@ -1,18 +1,4 @@
 
-GET /beer/_mapping
-
-DELETE /beer
-
-PUT /beer
-{
-  "settings" : {
-        "index" : {
-            "number_of_shards" : 1,
-            "number_of_replicas" : 0 
-        }
-    }
-}
-
 
 GET /_cat/indices
 GET /_cat

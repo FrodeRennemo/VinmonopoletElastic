@@ -1,7 +1,11 @@
 
 
+GET /
+
 POST /beer/pils/
-{ "name": "Trondheim Pilsener", "alcohol": 5}
+{ "name": "Oslo Pilsener", "alcohol": 5}
+
+GET /_cat/indices
 
 GET /beer/_search
 
@@ -13,22 +17,14 @@ GET /beer/_search?q=pilsener
 GET /beer/_mapping
 
 POST /beer/stout/
-{ "name": "Trondheim Dry Stout", "alcohol": 5}
+{ "name": "Oslo Dry Stout", "alcohol": 5}
 
 POST /beer/ipa
-{ "name": "Trondheim IPA", "alcohol": 4}
+{ "name": "Oslo IPA", "alcohol": 4}
 
 POST /beer/stout
 { "name": "Hornbeer Russian Imperial Stout", "alcohol": 12}
 
-
-POST /beer/_bulk
-{"index": {"_type":"pils"}}
-{ "name": "Ringnes", "alcohol": 4}
-{"index": {"_type":"stout"}}
-{ "name": "stout stout stout stout", "alcohol": 2}
-{"index": {"_type":"stout"}}
-{ "name": "imperial stout", "alcohol": 6}
 
 
 
