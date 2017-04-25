@@ -1,7 +1,8 @@
 
+GET /_cat
 
 GET /_cat/indices
-GET /_cat
+
 
 GET /_cluster/health
 GET /_cluster/stats
